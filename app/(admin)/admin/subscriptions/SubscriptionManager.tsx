@@ -41,7 +41,7 @@ export default function SubscriptionManager({
     
     // Verificar si estamos después del día 10 del mes y aún no pagó
     if (today.getDate() > 10 && subscription.payment_status === 'pending') {
-      return { status: 'late', message: 'Mora - 20% recargo', color: 'red' }
+      return { status: 'late', message: 'Demora - 20% recargo', color: 'red' }
     }
     
     if (subscription.payment_status === 'paid') {

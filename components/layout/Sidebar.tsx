@@ -46,7 +46,7 @@ export default function Sidebar({ userRole, userName }: SidebarProps) {
       {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-15 z-40"
+          className="lg:hidden fixed inset-0 bg-black/80 z-40"
           onClick={closeSidebar}
         />
       )}

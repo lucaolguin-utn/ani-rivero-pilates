@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export default function BookButton({ 
   classId, 
@@ -24,13 +25,13 @@ export default function BookButton({
       body: JSON.stringify({ classId })
     })
 
-    const data = await response.json()
-
     if (response.ok) {
-      alert('¡Reserva confirmada!')
+      toast.success('Clase reservada con éxito'); 
       router.refresh()
     } else {
-      alert(data.error || 'Error al reservar')
+      const data = await response.json();
+      toast.error(data.error || 'Error al reservar la clase');
+      setLoading(false);
     }
 
     setLoading(false)
@@ -52,10 +53,11 @@ export default function BookButton({
     const data = await response.json()
 
     if (response.ok) {
-      alert('Reserva cancelada')
+      toast.success('Reserva cancelada con éxito'); 
       router.refresh()
     } else {
-      alert(data.error || 'Error al cancelar')
+      toast.error(data.error || 'Error al cancelar la reserva');
+      setLoading(false);
     }
 
     setLoading(false)

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export default function NewClassForm() {
   const router = useRouter()
@@ -27,12 +28,12 @@ export default function NewClassForm() {
     })
 
     if (response.ok) {
-      alert('Clase creada exitosamente')
-      router.push('/admin')
+      toast.success('Clase creada exitosamente'); 
+      router.push('/admin');
     } else {
-      const data = await response.json()
-      alert(data.error || 'Error al crear la clase')
-      setLoading(false)
+      const data = await response.json();
+      toast.error(data.error || 'Error al crear la clase');
+      setLoading(false);
     }
   }
 
