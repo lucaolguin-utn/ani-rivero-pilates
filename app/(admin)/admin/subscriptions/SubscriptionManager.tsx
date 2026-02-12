@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 interface Student {
   id: string
@@ -65,10 +66,11 @@ export default function SubscriptionManager({
     })
 
     if (response.ok) {
-      alert('Pago registrado correctamente')
+      toast.success('Pago registrado correctamente')
       router.refresh()
     } else {
-      alert('Error al registrar el pago')
+      const data = await response.json()
+      toast.error(data.error || 'Error al registrar el pago')
     }
 
     setLoading(false)
@@ -88,12 +90,12 @@ export default function SubscriptionManager({
     })
 
     if (response.ok) {
-        alert('Suscripción creada correctamente')
+        toast.success('Suscripción creada correctamente')
         setSelectedStudent(null)
         router.refresh()
     } else {
         const data = await response.json()
-        alert(data.error || 'Error al crear la suscripción')
+        toast.error(data.error || 'Error al crear la suscripción')
     }
 
     setLoading(false)

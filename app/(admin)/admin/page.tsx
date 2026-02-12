@@ -79,6 +79,12 @@ export default async function AdminDashboard() {
           <h3 className="text-lg font-semibold mb-4">Acciones rápidas</h3>
           <div className="flex gap-4">
             <Link 
+              href="/admin/classes"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Gestionar Clases
+            </Link>
+            <Link 
               href="/admin/classes/new"
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import Swal from 'sweetalert2'
 
 export default function BookButton({ 
   classId, 
@@ -38,8 +39,17 @@ export default function BookButton({
   }
 
   const handleCancel = async () => {
-    if (!confirm('¿Estás segura que querés cancelar esta reserva?')) {
-      return
+    const result = await Swal.fire({
+      title: '¿Estás segura?',
+      text: '¿Querés cancelar esta reserva?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, cancelar',
+      cancelButtonText: 'No, volver'
+    });
+
+    if (!result.isConfirmed) {
+      return;
     }
 
     setLoading(true)
@@ -57,7 +67,6 @@ export default function BookButton({
       router.refresh()
     } else {
       toast.error(data.error || 'Error al cancelar la reserva');
-      setLoading(false);
     }
 
     setLoading(false)

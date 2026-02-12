@@ -97,6 +97,17 @@ export default function Sidebar({ userRole, userName }: SidebarProps) {
               <span className="font-medium">Panel de Administración</span>
             </Link>
           )}
+
+          {userRole === 'admin' && (
+            <Link
+              href="/admin/classes"
+              onClick={closeSidebar}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/admin/classes')}`}
+            >
+              <span className="text-xl">📅</span>
+              <span className="font-medium">Gestionar Clases</span>
+            </Link>
+          )}
         </nav>
 
         {/* Logout */}
